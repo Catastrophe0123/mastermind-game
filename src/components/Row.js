@@ -13,7 +13,7 @@ export class Row extends Component {
    };
    // state = {colors : [ {0: "blue"}, {1: "red"} ]}
    changeColour = (clr, id) => {
-      if (!this.state.isfull) {
+      if (!this.state.isfull && this.props.isActive === true) {
          console.log("current colour : ", this.props.currentColour.toString());
          let x = this.state.colors.map(el => {
             if (el.id === id) {
@@ -30,7 +30,9 @@ export class Row extends Component {
                }
             }
             if (count === 4) {
+               console.log("disabled / full");
                this.setState({ isfull: true });
+               this.props.activeHandler(this.props.rowId);
             }
          });
       }
