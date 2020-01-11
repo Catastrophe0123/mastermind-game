@@ -3,7 +3,6 @@ import React, { Component } from "react";
 export class Colour extends Component {
    // red yellow blue brown green purple
    render() {
-      console.log("color : ", this.props.colour);
       return (
          <div
             onClick={() =>

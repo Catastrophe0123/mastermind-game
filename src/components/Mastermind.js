@@ -7,7 +7,6 @@ class Mastermind extends Component {
    state = { currentColour: "" };
 
    onChooseHandler = colour => {
-      console.log("i was pressed");
       console.log(colour);
       this.setState({
          currentColour: colour

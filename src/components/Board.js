@@ -5,7 +5,11 @@ export class Board extends Component {
    render() {
       return (
          <div>
-            <Row currentColour={this.props.currentColour} />
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((el, index) => {
+               return (
+                  <Row key={index} currentColour={this.props.currentColour} />
+               );
+            })}
          </div>
       );
    }
