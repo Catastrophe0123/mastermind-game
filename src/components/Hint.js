@@ -68,11 +68,9 @@ export class Hint extends Component {
                hintValues[k] = 2;
                readColours[j][Object.keys(filteredValues[j])[0]] += 1;
                k++;
-               continue;
             }
-
             if (
-               readColours[j][Object.keys(filteredValues[j])[0]] <
+               readColours[j][Object.keys(filteredValues[j])[0]] <=
                   filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
                this.props.colours[i]["colour"] ===
                   Object.keys(filteredValues[j])[0] &&
@@ -82,7 +80,6 @@ export class Hint extends Component {
                hintValues[k] = 3;
                readColours[j][Object.keys(filteredValues[j])[0]] += 1;
                k++;
-               break;
             }
          }
       }
@@ -91,8 +88,19 @@ export class Hint extends Component {
 
       //sorting to descending order
       hintValues.sort((a, b) => b - a);
+      const winningCondition = [3, 3, 3, 3];
       console.log("hint after sort : ", hintValues);
-      this.setState({ hint: hintValues });
+      this.setState({ hint: hintValues }, () => {
+         console.log("inside callback : ", this.state.hint);
+         if (
+            JSON.stringify(winningCondition) === JSON.stringify(this.state.hint)
+         )
+            this.props.hasWonHandler();
+         else if (this.props.rowId === 9) {
+            this.props.hasWonHandler();
+         }
+      });
+
       //   for (let i = 0; i < 4; i++) {
       //      let y = {};
       //      let x = this.props.answer[i];

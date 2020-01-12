@@ -4,7 +4,7 @@ import ColourList from "./ColourList";
 import Board from "./Board";
 
 class Mastermind extends Component {
-   state = { currentColour: "", answer: [] };
+   state = { currentColour: "", answer: [], gameOver: false };
    //answer = ["red", black, etc]
    colours = ["red", "yellow", "blue", "brown", "green", "purple"];
    componentDidMount = () => {
@@ -16,11 +16,22 @@ class Mastermind extends Component {
       this.setState({ answer: ans });
    };
 
+   hasWonHandler = () => {
+      console.log("i ran");
+      this.setState({ gameOver: true });
+   };
+
    onChooseHandler = colour => {
       console.log(colour);
       this.setState({
          currentColour: colour
       });
+   };
+
+   displayModal = () => {
+      if (this.state.gameOver === true) {
+         <Modal />;
+      }
    };
 
    render() {
@@ -30,6 +41,7 @@ class Mastermind extends Component {
             <Rules />
             <ColourList chooseHandler={this.onChooseHandler} />
             <Board
+               hasWonHandler={this.hasWonHandler}
                answer={this.state.answer}
                currentColour={this.state.currentColour}
             />

@@ -41,7 +41,14 @@ export class Row extends Component {
 
    displayHint = () => {
       if (this.state.isfull) {
-         return <Hint answer={this.props.answer} colours={this.state.colors} />;
+         return (
+            <Hint
+               rowId={this.props.rowId}
+               hasWonHandler={this.props.hasWonHandler}
+               answer={this.props.answer}
+               colours={this.state.colors}
+            />
+         );
       }
    };
 
