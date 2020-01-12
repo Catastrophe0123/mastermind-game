@@ -8,9 +8,7 @@ export class Hint extends Component {
 
    componentDidMount = () => {
       console.log("hello world from the hint logic fuction");
-      // we got the answer and the set entered by the user
       //["red", "yellow", "blue", "brown", "green", "purple"];
-
       //if value 1 ==== wrong
       //if value 2 ==== wrong but right colour
       //if value 3 ==== right
@@ -24,7 +22,9 @@ export class Hint extends Component {
          { green: 0, pos: [] },
          { purple: 0, pos: [] }
       ];
+
       //eg coloursInAnswer = [{"red : 1"}, {"purple: 2"}, {"blue: 1"}]
+
       for (let i = 0; i < 4; i++) {
          for (let j = 0; j < 6; j++) {
             if (Object.keys(coloursInAnswer[j])[0] === this.props.answer[i]) {
@@ -36,26 +36,40 @@ export class Hint extends Component {
       const filteredValues = coloursInAnswer.filter(
          element => element[Object.keys(element)[0]] !== 0
       );
+      let readColours = [];
+      filteredValues.forEach((clr, index) => {
+         let x = {};
+         x[Object.keys(clr)[0]] = 0;
+         console.log("x : ", x);
+         readColours.push(x);
+      });
+      console.log("read colors : ", readColours);
 
       //this.props.colours is ["red", "blue","brown", "red"]
 
       //now coloursInAnswer contains key-value pairs of the repeated colors
       // i is for this.props.colours
       // j is for filteredValues
+      // k is for hintValues
       let k = 0;
       console.log(filteredValues);
       for (let i = 0; i < 4; i++) {
          for (let j = 0; j < filteredValues.length; j++) {
             if (
+               readColours[j][Object.keys(filteredValues[j])[0]] <
+                  filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
                this.props.colours[i]["colour"] ===
                   Object.keys(filteredValues[j])[0] &&
                filteredValues[j][Object.keys(filteredValues[j])[1]].includes(i)
             ) {
                console.log("correct position and colour");
                hintValues[k] = 3;
+               readColours[j][Object.keys(filteredValues[j])[0]] += 1;
                k++;
                break;
             } else if (
+               readColours[j][Object.keys(filteredValues[j])[0]] <
+                  filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
                this.props.colours[i]["colour"] ===
                   Object.keys(filteredValues[j])[0] &&
                filteredValues[j][Object.keys(filteredValues[j])[1]].includes(
@@ -64,12 +78,16 @@ export class Hint extends Component {
             ) {
                console.log("correct colour but wrong position");
                hintValues[k] = 2;
+               readColours[j][Object.keys(filteredValues[j])[0]] += 1;
                k++;
                continue;
             }
          }
       }
+
       console.log("hint before sort : ", hintValues);
+
+      //sorting to descending order
       hintValues.sort((a, b) => b - a);
       console.log("hint after sort : ", hintValues);
       this.setState({ hint: hintValues });
