@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Rules from "./Rules";
 import ColourList from "./ColourList";
 import Board from "./Board";
+import Modal from "./Modal";
+import BackDrop from "./BackDrop";
 
 class Mastermind extends Component {
    state = { currentColour: "", answer: [], gameOver: false };
@@ -30,7 +32,12 @@ class Mastermind extends Component {
 
    displayModal = () => {
       if (this.state.gameOver === true) {
-         <Modal />;
+         return (
+            <div>
+               <Modal>GAME OVER</Modal>
+               <BackDrop onclick={this.props.resetHandler} />
+            </div>
+         );
       }
    };
 
@@ -45,6 +52,7 @@ class Mastermind extends Component {
                answer={this.state.answer}
                currentColour={this.state.currentColour}
             />
+            {this.displayModal()}
          </div>
       );
    }
