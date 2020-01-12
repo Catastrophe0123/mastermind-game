@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9160abf22de937daea2b65e14e67e1e1",
+    "revision": "066861fbd501e2390f046f3f468eaf33",
     "url": "/mastermind-game/index.html"
   },
   {
-    "revision": "14ef28ef649a855e5405",
+    "revision": "d7d56e74d9266d38c581",
     "url": "/mastermind-game/static/css/main.4bc72368.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mastermind-game/static/js/2.c1c37226.chunk.js.LICENSE"
   },
   {
-    "revision": "14ef28ef649a855e5405",
-    "url": "/mastermind-game/static/js/main.c400e49a.chunk.js"
+    "revision": "d7d56e74d9266d38c581",
+    "url": "/mastermind-game/static/js/main.77815ba5.chunk.js"
   },
   {
     "revision": "24f6a0de3071a8705e1d",
