@@ -60,18 +60,6 @@ export class Hint extends Component {
                   filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
                this.props.colours[i]["colour"] ===
                   Object.keys(filteredValues[j])[0] &&
-               filteredValues[j][Object.keys(filteredValues[j])[1]].includes(i)
-            ) {
-               console.log("correct position and colour");
-               hintValues[k] = 3;
-               readColours[j][Object.keys(filteredValues[j])[0]] += 1;
-               k++;
-               break;
-            } else if (
-               readColours[j][Object.keys(filteredValues[j])[0]] <
-                  filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
-               this.props.colours[i]["colour"] ===
-                  Object.keys(filteredValues[j])[0] &&
                filteredValues[j][Object.keys(filteredValues[j])[1]].includes(
                   i
                ) === false
@@ -81,6 +69,20 @@ export class Hint extends Component {
                readColours[j][Object.keys(filteredValues[j])[0]] += 1;
                k++;
                continue;
+            }
+
+            if (
+               readColours[j][Object.keys(filteredValues[j])[0]] <
+                  filteredValues[j][Object.keys(filteredValues[j])[1]].length &&
+               this.props.colours[i]["colour"] ===
+                  Object.keys(filteredValues[j])[0] &&
+               filteredValues[j][Object.keys(filteredValues[j])[1]].includes(i)
+            ) {
+               console.log("correct position and colour");
+               hintValues[k] = 3;
+               readColours[j][Object.keys(filteredValues[j])[0]] += 1;
+               k++;
+               break;
             }
          }
       }
