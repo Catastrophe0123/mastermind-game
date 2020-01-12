@@ -9,7 +9,7 @@ export class Rules extends Component {
 
    render() {
       return !this.state.toggleRules ? (
-         <div onClick={this.toggleHandler}>Show Rules</div>
+         <button onClick={this.toggleHandler}>Show Rules</button>
       ) : (
          <div>
             {" "}
