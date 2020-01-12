@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Colour from "./Colour";
+import Hint from "./Hint";
 
 export class Row extends Component {
    state = {
@@ -38,24 +39,33 @@ export class Row extends Component {
       }
    };
 
+   displayHint = () => {
+      if (this.state.isfull) {
+         return <Hint answer={this.props.answer} colours={this.state.colors} />;
+      }
+   };
+
    render() {
       return (
-         <div
-            style={{
-               display: "flex",
-               justifyContent: "space-between",
-               width: "200px"
-            }}>
-            {[1, 2, 3, 4].map((el, index) => {
-               return (
-                  <Colour
-                     onchoose={this.changeColour}
-                     key={index}
-                     id={index}
-                     colour={this.state.colors[index].colour}
-                  />
-               );
-            })}
+         <div style={{ display: "flex" }}>
+            <div
+               style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "200px"
+               }}>
+               {[1, 2, 3, 4].map((el, index) => {
+                  return (
+                     <Colour
+                        onchoose={this.changeColour}
+                        key={index}
+                        id={index}
+                        colour={this.state.colors[index].colour}
+                     />
+                  );
+               })}
+            </div>
+            <div>{this.displayHint()}</div>
          </div>
       );
    }
