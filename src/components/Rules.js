@@ -13,7 +13,7 @@ export class Rules extends Component {
       ) : (
          <div>
             {" "}
-            <div onClick={this.toggleHandler}> Hide Rules</div>
+            <button onClick={this.toggleHandler}> Hide Rules</button>
             <p>
                The codebreaker tries to guess the pattern, in both order and
                color, within eight to twelve turns. Each guess is made by
